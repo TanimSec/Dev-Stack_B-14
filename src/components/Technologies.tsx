@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import type { Technology } from "../types/technology";
 import TechnologyCard from "./TechnologyCard";
 import Stack from "./Stack";
@@ -25,6 +26,7 @@ function Technologies() {
     );
 
     if (alreadyAdded) {
+      toast.warning(`${technology.name} is already in your stack!`);
       return;
     }
 
@@ -32,16 +34,22 @@ function Technologies() {
       ...currentStack,
       technology,
     ]);
+
+    toast.success(`${technology.name} added to your stack!`);
   };
 
   const handleRemoveFromStack = (technology: Technology) => {
     setSelectedTechnologies((currentStack) =>
       currentStack.filter((item) => item.id !== technology.id)
     );
+
+    toast.success(`${technology.name} removed from your stack!`);
   };
 
   const handleRemoveAll = () => {
     setSelectedTechnologies([]);
+
+    toast.success("All technologies removed from your stack!");
   };
 
   if (loading) {
