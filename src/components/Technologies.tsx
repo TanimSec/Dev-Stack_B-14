@@ -40,6 +40,10 @@ function Technologies() {
     );
   };
 
+  const handleRemoveAll = () => {
+    setSelectedTechnologies([]);
+  };
+
   if (loading) {
     return (
       <section className="mx-auto max-w-7xl px-6 py-16">
@@ -82,6 +86,7 @@ function Technologies() {
         <Stack
           selectedTechnologies={selectedTechnologies}
           onRemove={handleRemoveFromStack}
+          onRemoveAll={handleRemoveAll}
         />
       </div>
     </section>
