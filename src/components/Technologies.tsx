@@ -20,6 +20,14 @@ function Technologies() {
   }, []);
 
   const handleAddToStack = (technology: Technology) => {
+    const alreadyAdded = selectedTechnologies.some(
+      (item) => item.id === technology.id
+    );
+
+    if (alreadyAdded) {
+      return;
+    }
+
     setSelectedTechnologies((currentStack) => [
       ...currentStack,
       technology,
@@ -57,6 +65,9 @@ function Technologies() {
               key={technology.id}
               technology={technology}
               onAdd={handleAddToStack}
+              isAdded={selectedTechnologies.some(
+                (item) => item.id === technology.id
+              )}
             />
           ))}
         </div>
