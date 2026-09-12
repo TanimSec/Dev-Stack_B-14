@@ -34,6 +34,12 @@ function Technologies() {
     ]);
   };
 
+  const handleRemoveFromStack = (technology: Technology) => {
+    setSelectedTechnologies((currentStack) =>
+      currentStack.filter((item) => item.id !== technology.id)
+    );
+  };
+
   if (loading) {
     return (
       <section className="mx-auto max-w-7xl px-6 py-16">
@@ -73,7 +79,10 @@ function Technologies() {
         </div>
 
         {/* Your Stack */}
-        <Stack selectedTechnologies={selectedTechnologies} />
+        <Stack
+          selectedTechnologies={selectedTechnologies}
+          onRemove={handleRemoveFromStack}
+        />
       </div>
     </section>
   );

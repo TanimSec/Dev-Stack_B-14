@@ -2,9 +2,13 @@ import type { Technology } from "../types/technology";
 
 interface StackProps {
   selectedTechnologies: Technology[];
+  onRemove: (technology: Technology) => void;
 }
 
-function Stack({ selectedTechnologies }: StackProps) {
+function Stack({
+  selectedTechnologies,
+  onRemove,
+}: StackProps) {
   return (
     <aside className="rounded-xl border border-gray-200 p-5">
       <h3 className="font-semibold">Your Stack</h3>
@@ -24,17 +28,26 @@ function Stack({ selectedTechnologies }: StackProps) {
           {selectedTechnologies.map((technology) => (
             <div
               key={technology.id}
-              className="flex items-center gap-3 rounded-lg border border-gray-200 p-3"
+              className="flex items-center justify-between gap-3 rounded-lg border border-gray-200 p-3"
             >
-              <img
-                src={technology.icon}
-                alt={`${technology.name} icon`}
-                className="h-7 w-7 object-contain"
-              />
+              <div className="flex items-center gap-3">
+                <img
+                  src={technology.icon}
+                  alt={`${technology.name} icon`}
+                  className="h-7 w-7 object-contain"
+                />
 
-              <p className="text-sm font-medium">
-                {technology.name}
-              </p>
+                <p className="text-sm font-medium">
+                  {technology.name}
+                </p>
+              </div>
+
+              <button
+                onClick={() => onRemove(technology)}
+                className="text-xs font-medium text-red-500 hover:text-red-700"
+              >
+                Remove
+              </button>
             </div>
           ))}
         </div>
