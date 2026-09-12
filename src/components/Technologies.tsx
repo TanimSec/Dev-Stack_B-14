@@ -5,6 +5,9 @@ import Stack from "./Stack";
 
 function Technologies() {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
+  const [selectedTechnologies, setSelectedTechnologies] = useState<
+    Technology[]
+  >([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,6 +18,13 @@ function Technologies() {
         setLoading(false);
       });
   }, []);
+
+  const handleAddToStack = (technology: Technology) => {
+    setSelectedTechnologies((currentStack) => [
+      ...currentStack,
+      technology,
+    ]);
+  };
 
   if (loading) {
     return (
@@ -46,12 +56,13 @@ function Technologies() {
             <TechnologyCard
               key={technology.id}
               technology={technology}
+              onAdd={handleAddToStack}
             />
           ))}
         </div>
 
         {/* Your Stack */}
-        <Stack />
+        <Stack selectedTechnologies={selectedTechnologies} />
       </div>
     </section>
   );

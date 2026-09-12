@@ -1,17 +1,44 @@
-function Stack() {
+import type { Technology } from "../types/technology";
+
+interface StackProps {
+  selectedTechnologies: Technology[];
+}
+
+function Stack({ selectedTechnologies }: StackProps) {
   return (
     <aside className="rounded-xl border border-gray-200 p-5">
       <h3 className="font-semibold">Your Stack</h3>
 
       <p className="mt-1 text-xs text-gray-400">
-        No technologies selected yet.
+        {selectedTechnologies.length} technologies selected.
       </p>
 
-      <div className="mt-6 rounded-lg border border-dashed border-gray-200 p-6 text-center">
-        <p className="text-xs text-gray-400">
-          Your stack is empty.
-        </p>
-      </div>
+      {selectedTechnologies.length === 0 ? (
+        <div className="mt-6 rounded-lg border border-dashed border-gray-200 p-6 text-center">
+          <p className="text-xs text-gray-400">
+            Your stack is empty.
+          </p>
+        </div>
+      ) : (
+        <div className="mt-6 space-y-3">
+          {selectedTechnologies.map((technology) => (
+            <div
+              key={technology.id}
+              className="flex items-center gap-3 rounded-lg border border-gray-200 p-3"
+            >
+              <img
+                src={technology.icon}
+                alt={`${technology.name} icon`}
+                className="h-7 w-7 object-contain"
+              />
+
+              <p className="text-sm font-medium">
+                {technology.name}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
     </aside>
   );
 }
