@@ -12,11 +12,27 @@ function Technologies() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/src/data/technologies.json")
-      .then((response) => response.json())
+    fetch("/technologies.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         setTechnologies(data);
         setLoading(false);
+      })
+      .catch((error) => {
+        console.warn("Fetch failed, falling back to local JSON:", error);
+        import("../data/technologies.json")
+          .then((mod) => {
+            setTechnologies(mod.default as Technology[]);
+            setLoading(false);
+          })
+          .catch(() => {
+            setLoading(false);
+          });
       });
   }, []);
 
@@ -61,7 +77,7 @@ function Technologies() {
   }
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-16">
+    <section id="technologies" className="mx-auto max-w-7xl px-6 py-16 scroll-mt-8">
       {/* Section heading */}
       <div className="mb-8">
         <h2 className="text-3xl font-bold">

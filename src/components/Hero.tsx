@@ -13,28 +13,32 @@ function Hero() {
         </h1>
 
         <p className="mt-6">
-          Discover the technologies you need to build modern, powerful and
-          scalable web applications.
+          Explore frontend, backend, database, and tooling options,
+          compare them side by side, and put together the stack that fits your
+          next project.
         </p>
 
         {/* Buttons */}
         <div className="mt-8 flex gap-4">
-          <button className="brand-gradient cursor-pointer rounded-xl px-6 py-3 font-medium text-white">
+          <a
+            href="#technologies"
+            className="brand-gradient inline-block cursor-pointer rounded-xl px-6 py-3 font-medium text-white transition hover:opacity-95"
+          >
             Explore Technologies
-          </button>
+          </a>
 
-          <button className="cursor-pointer rounded-xl border border-gray-300 px-6 py-3 font-medium">
+          <button className="cursor-pointer rounded-xl border border-gray-300 px-6 py-3 font-medium transition hover:bg-gray-50">
             Learn More
           </button>
         </div>
       </div>
 
       {/* Right side */}
-      <div className="w-full max-w-md">
+      <div className="flex w-full items-center justify-center max-w-lg lg:max-w-xl">
         <img
           src={banner}
           alt="Developer technology stack"
-          className="w-full"
+          className="w-full object-contain transition-transform duration-300 hover:scale-105"
         />
       </div>
     </section>

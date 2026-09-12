@@ -12,7 +12,7 @@ function Stack({
   onRemoveAll,
 }: StackProps) {
   return (
-    <aside className="rounded-xl border border-gray-200 p-5">
+    <aside className="h-fit lg:sticky lg:top-6 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
       <h3 className="font-semibold">Your Stack</h3>
 
       <p className="mt-1 text-xs text-gray-400">
@@ -31,7 +31,7 @@ function Stack({
             {selectedTechnologies.map((technology) => (
               <div
                 key={technology.id}
-                className="flex items-center justify-between gap-3 rounded-lg border border-gray-200 p-3"
+                className="flex items-center justify-between gap-3 rounded-lg border border-gray-200 p-3 transition hover:border-gray-300"
               >
                 <div className="flex items-center gap-3">
                   <img
@@ -47,7 +47,7 @@ function Stack({
 
                 <button
                   onClick={() => onRemove(technology)}
-                  className="text-xs font-medium text-red-500 hover:text-red-700"
+                  className="cursor-pointer text-xs font-medium text-red-500 hover:text-red-700"
                 >
                   Remove
                 </button>
@@ -57,7 +57,7 @@ function Stack({
 
           <button
             onClick={onRemoveAll}
-            className="mt-5 w-full rounded-lg border border-red-200 px-4 py-2 text-xs font-medium text-red-500 hover:bg-red-50"
+            className="mt-5 w-full cursor-pointer rounded-lg border border-red-200 px-4 py-2 text-xs font-medium text-red-500 transition hover:bg-red-50"
           >
             Remove All
           </button>

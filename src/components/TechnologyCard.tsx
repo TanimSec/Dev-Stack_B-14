@@ -48,23 +48,26 @@ function TechnologyCard({
         </span>
       </div>
 
-      {/* Rating */}
-      <p className="mt-3 text-xs font-medium text-gray-700">
-        ⭐ {technology.rating}
-      </p>
+      {/* Bottom Section: Rating + Action */}
+      <div className="mt-auto pt-4 flex flex-col gap-3">
+        {/* Rating */}
+        <p className="text-xs font-medium text-gray-700 leading-none">
+          ⭐ {technology.rating}
+        </p>
 
-      {/* Add button */}
-      <button
-        onClick={() => onAdd(technology)}
-        disabled={isAdded}
-        className={`mt-auto w-full rounded-lg px-4 py-2 text-xs font-medium transition ${
-          isAdded
-            ? "cursor-not-allowed bg-gray-200 text-gray-500"
-            : "bg-gray-900 text-white hover:bg-gray-800"
-        }`}
-      >
-        {isAdded ? "✓ Added to Stack" : "Add to Stack"}
-      </button>
+        {/* Add button */}
+        <button
+          onClick={() => onAdd(technology)}
+          disabled={isAdded}
+          className={`w-full rounded-lg px-4 py-2.5 text-xs font-medium transition ${
+            isAdded
+              ? "cursor-not-allowed bg-gray-200 text-gray-500"
+              : "cursor-pointer bg-gray-900 text-white hover:bg-gray-800 active:scale-[0.99]"
+          }`}
+        >
+          {isAdded ? "✓ Added to Stack" : "Add to Stack"}
+        </button>
+      </div>
     </div>
   );
 }
